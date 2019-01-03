@@ -24,7 +24,7 @@ class Dynamite extends PluginBase implements Listener
 
         if ($entity instanceof Egg) {
 
-            $explosion = new Explosion(new Position($entity->getX(), $entity->getY(), $entity->getZ(), $entity->getLevel()), 3.3, null);
+            $explosion = new Explosion(new Position($entity->getX(), $entity->getY(), $entity->getZ(), $entity->getLevel()), 3.3, $entity);
             $explosion->explodeA();
             $explosion->explodeB();
 
@@ -40,7 +40,7 @@ class Dynamite extends PluginBase implements Listener
 
         if ($entity instanceof Egg) {
 
-            $explosion = new Explosion(new Position($entity->getX(), $entity->getY(), $entity->getZ(), $entity->getLevel()), 3.3, null);
+            $explosion = new Explosion(new Position($entity->getX(), $entity->getY(), $entity->getZ(), $entity->getLevel()), 3.3, $entity);
             $explosion->explodeA();
             $explosion->explodeB();
 
