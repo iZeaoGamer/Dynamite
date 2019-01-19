@@ -51,7 +51,7 @@ class Dynamite extends PluginBase implements Listener
 
                     }
 
-                    if(!$area->getFlag("edit") && $edit){
+                    if(!$area->getFlag("edit")){
 
                         $result = true;
                         break;
