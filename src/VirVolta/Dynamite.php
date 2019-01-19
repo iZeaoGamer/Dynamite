@@ -21,7 +21,7 @@ class Dynamite extends PluginBase implements Listener
 
     public function onEnable()
     {
-	    $this->getServer()->getPluginManager()->registerEvents($this, $this);
+	$this->getServer()->getPluginManager()->registerEvents($this, $this);
 
         if ($this->getServer()->getPluginManager()->getPlugin("iProtector") !== null) {
 
@@ -35,25 +35,30 @@ class Dynamite extends PluginBase implements Listener
 
     }
 
-    private function canEdit(Position $position)
+    private function canExplode(Position $position)
     {
         if(isset($this->protect)) {
             
-            $o = true;
+            $result = true;
+	    $edit = (isset($this->protect->levels[$position->getLevel()->getName()]) ? $this->protect->levels[$position->getLevel()->getName()]["Edit"] : $this->protect->edit);
 
+	    if($edit) {
+      		$result = false;
+    	    }
+		
             foreach($this->protect->areas as $area){
 
                 if($area->contains($position, $position->getLevel()->getName())){
 
                     if($area->getFlag("edit")){
 
-                        $o = false;
+                        $result = false;
 
                     }
 
-                    if(!$area->getFlag("edit") && $g){
+                    if(!$area->getFlag("edit") && $edit){
 
-                        $o = true;
+                        $result = true;
                         break;
 
                     }
@@ -62,7 +67,7 @@ class Dynamite extends PluginBase implements Listener
 
             }
 
-            return $o;   
+            return $result;   
             
         }
         
@@ -112,7 +117,7 @@ class Dynamite extends PluginBase implements Listener
 
             $pos = new Position($entity->x,$entity->y,$entity->z,$entity->level);
             
-            if(!$this->canEdit($pos)){
+            if(!$this->canExplode($pos)){
                 
                 $event->setCancelled();
             
