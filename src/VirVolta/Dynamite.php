@@ -40,11 +40,6 @@ class Dynamite extends PluginBase implements Listener
         if(isset($this->protect)) {
             
             $result = true;
-	    $edit = (isset($this->protect->levels[$position->getLevel()->getName()]) ? $this->protect->levels[$position->getLevel()->getName()]["Edit"] : $this->protect->edit);
-
-	    if($edit) {
-      		$result = false;
-    	    }
 		
             foreach($this->protect->areas as $area){
 
