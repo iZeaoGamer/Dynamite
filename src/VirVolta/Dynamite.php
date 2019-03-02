@@ -23,7 +23,7 @@ class Dynamite extends PluginBase implements Listener
     {
 	$this->getServer()->getPluginManager()->registerEvents($this, $this);
 
-        if ($this->getServer()->getPluginManager()->getPlugin("iProtector") !== null) {
+        if ($this->getServer()->getPluginManager()->getPlugin("Festival") !== null) {
 
             $this->protect = $this->getServer()->getPluginManager()->getPlugin("Festival");
 
